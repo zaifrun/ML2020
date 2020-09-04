@@ -1,4 +1,4 @@
-#Opgave 1.3 - plots 
+#Opgave 1.3 - plots etc
 
 import matplotlib.pyplot as plt
 import numpy as np
