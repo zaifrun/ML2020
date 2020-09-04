@@ -1,3 +1,5 @@
+#Opgave 1.3 - plots
+
 import matplotlib.pyplot as plt
 import numpy as np
 
