@@ -10,6 +10,7 @@ X = 2 * np.random.rand(100, 1)  # hvad betyder de to parametre 100 og 1?
 y = 4 + 3 * X + np.random.randn(100, 1) # så hvilke parametre ville vi forvente modellen har?
 #hvad er forskellen mellem rand og randn? (du må se om du kan finde dokumentationen selv....)
 
+
 plt.plot(X,y, "b.")  # hvad betyder "b." ? Se dokumentationen for plot i pyplot linket ovenover
                     # og prøv at skifte til noget andet....
 plt.axis([0,2,0,15])  # betyder parameterne her?
@@ -20,7 +21,7 @@ lin_reg = LinearRegression()
 lin_reg.fit(X,y)   # train the model on the data
 
 #calculating the score
-score = lin_reg.score(X,y)
+score = lin_reg.score(X,y)  # NOTICE THAT THE CLOSER TO 1 THE BETTER.
 print("score "+str(score))
 
 #using the model on new data
@@ -36,7 +37,7 @@ plt.show()
 #see documentation for help...
 # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
 
-#How does this compare to the expected values?
+#How does this compare to the expected values for a and b? (Hint: Look at how the test data is defined)
 
 
 
