@@ -8,8 +8,8 @@ import scipy as sc
 
 
 
-print(pd.__version__)
-print(np.__version__)
-print(mlt.__version__)
-print(sk.__version__)
-print(sc.__version__)
+print("pandas: "+ pd.__version__)
+print("numpy: "+np.__version__)
+print("matplotlib "+mlt.__version__)
+print("sklearn "+sk.__version__)
+print("scipy "+sc.__version__)
