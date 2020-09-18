@@ -1,8 +1,20 @@
 # example of using mnist set for classification
+from sklearn.base import BaseEstimator
+from sklearn.model_selection import cross_val_score
 from sklearn.datasets import fetch_openml
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import SGDClassifier
+from sklearn.metrics import confusion_matrix, classification_report, precision_score, recall_score
+
+
+class Stupid_Classifier(BaseEstimator):
+
+    def fit(self, X, y=None):
+        pass
+
+    def predict(self, X):
+        return np.zeros((len(X),1), dtype=bool) #returns an array with only false
 
 
 print("MNIST example")
@@ -12,6 +24,8 @@ mnist = fetch_openml("mnist_784", version = 1, cache=True)
 
 
 print("have data now")
+
+
 
 mnist.keys()
 X, y = mnist["data"], mnist["target"]
@@ -46,8 +60,38 @@ sgd_clf = SGDClassifier(random_state=42)
 print("Training the model... please wait..")
 sgd_clf.fit(X_train, y_train_5)
 print("Model is trained")
+predictions = sgd_clf.predict(X_test)
+
 
 print("digit is five : "+str(sgd_clf.predict([some_digit])))
+
+# looking at how good our predictor is.
+print("Evaluating performance: Cross validation ")
+
+scores = cross_val_score(sgd_clf,X_train,y_train_5,cv=3,scoring="accuracy")
+print(scores)
+
+print("Evaluating performance: Cross validation on stupid predictor ")
+
+stupid_clf = Stupid_Classifier()
+predictions_stupid = stupid_clf.predict(X_test)
+scores_stupid = cross_val_score(stupid_clf,X_train,y_train_5,cv=3,scoring="accuracy")
+print(scores_stupid)
+
+print("Evaluating performance: Confusion matrix")
+matrix = confusion_matrix(y_test_5,predictions)
+print(matrix)
+#output is the confusion matrix
+
+tn, fp, fn, tp = matrix.ravel()
+print("(TN,FP,FN,TP)",(tn, fp, fn, tp))
+print("precision: "+ str(precision_score(y_test_5,predictions)))
+print("recall: "+ str(recall_score(y_test_5,predictions)))
+
+
+
+print(classification_report(y_test_5,predictions))
+
 
 
 
