@@ -5,6 +5,8 @@ from sklearn.datasets import fetch_openml
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import SGDClassifier
+from sklearn.metrics import f1_score
+
 from sklearn.metrics import confusion_matrix, classification_report, precision_score, recall_score
 
 
@@ -51,8 +53,10 @@ X_test = X[60000:]
 y_train = y[:60000]
 y_test = y[60000:]
 
+# visualize the distributions
 plt.hist(y,bins=10)
 
+#convert this into a binary classification problem
 y_train_5 = (y_train ==5) # creates an array of true if 5, false otherwise
 y_test_5 = (y_test == 5) # creates an array of true if 5, false otherwise
 
@@ -88,7 +92,6 @@ print("(TN,FP,FN,TP)",(tn, fp, fn, tp))
 print("precision: "+ str(precision_score(y_test_5,predictions)))
 print("recall: "+ str(recall_score(y_test_5,predictions)))
 
-from sklearn.metrics import f1_score
 f1_score(y_train_5,predictions)
 
 print(classification_report(y_test_5,predictions))
