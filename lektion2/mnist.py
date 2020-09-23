@@ -92,7 +92,7 @@ print("(TN,FP,FN,TP)",(tn, fp, fn, tp))
 print("precision: "+ str(precision_score(y_test_5,predictions)))
 print("recall: "+ str(recall_score(y_test_5,predictions)))
 
-f1_score(y_train_5,predictions)
+print("F1 score: "+str(f1_score(y_test_5,predictions)))
 
 print(classification_report(y_test_5,predictions))
 
