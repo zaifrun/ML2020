@@ -22,22 +22,39 @@ class Stupid_Classifier(BaseEstimator):
 print("MNIST example")
 print("fetching data.....can take some time....")
 #note fetching can take 1-2 minutes if not cached before
-mnist = fetch_openml("mnist_784", version = 1, cache=True)
+#mnist = fetch_openml("mnist_784", version = 1, cache=True)
 
+
+from mlxtend.data import loadlocal_mnist
+
+X_train, y_train = loadlocal_mnist(
+            images_path='train-images.idx3-ubyte',
+            labels_path='train-labels.idx1-ubyte')
+
+X_test, y_test = loadlocal_mnist(
+            images_path='t10k-images.idx3-ubyte',
+            labels_path='t10k-labels.idx1-ubyte')
+
+
+print(X_train.shape)
+print(y_train.shape)
 
 print("have data now")
 
-
-
+#The following is only used if data is from openML online
+"""
+mnist = fetch_openml("mnist_784", version = 1, cache=True)
 mnist.keys()
 X, y = mnist["data"], mnist["target"]
 print(X.shape)
 print(y.shape)
 #convert the string array to int array
-y = y.astype(np.uint8)
 
-some_digit = X[0]
-print("label : "+str(y[0]))
+y = y.astype(np.uint8)
+"""
+
+some_digit = X_train[0]
+print("label : "+str(y_train[0]))
 
 
 some_digit_image = some_digit.reshape(28,28)
@@ -48,13 +65,16 @@ plt.axis("off")
 plt.figure(1)
 plt.axis("on")
 
+#The following is only used if data is from openML online
+""" 
 X_train = X[:60000]
 X_test = X[60000:]
 y_train = y[:60000]
 y_test = y[60000:]
+"""
 
 # visualize the distributions
-plt.hist(y,bins=10)
+plt.hist(y_train,bins=10)
 
 #convert this into a binary classification problem
 y_train_5 = (y_train ==5) # creates an array of true if 5, false otherwise
@@ -95,8 +115,6 @@ print("recall: "+ str(recall_score(y_test_5,predictions)))
 print("F1 score: "+str(f1_score(y_test_5,predictions)))
 
 print(classification_report(y_test_5,predictions))
-
-
 
 
 plt.show()
