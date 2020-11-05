@@ -35,26 +35,37 @@ log_reg.fit(X,y)
 
 p1 = [2,1]
 p2 = [4,1.5]
-p3 = [6,2]
-p4 = [4.8,1.6]
+p3 = [4.8,1.6]
+p4 = [6,2]
 point_size = 11
 plt.plot(p1[0],p1[1],'ys',markersize=point_size)
 plt.plot(p2[0],p2[1],'ys',markersize=point_size)
 plt.plot(p3[0],p3[1],'ys',markersize=point_size)
 plt.plot(p4[0],p4[1],'ys',markersize=point_size)
+plt.annotate("P1",p1)
+plt.annotate("P2",p2)
+plt.annotate("P3",p3)
+plt.annotate("P4",p4)
 
+#ax.annotate('your_lable', (x,y))
 
 pred1 = log_reg.predict_proba([p1])
 pred2 = log_reg.predict_proba([p2])
 pred3 = log_reg.predict_proba([p3])
 pred4 = log_reg.predict_proba([p4])
-print(pred1,pred2,pred3,pred4)
+print("probility p1" +str(pred1))
+print("probility p2" +str(pred2))
+print("probility p3" +str(pred3))
+print("probility p4" +str(pred4))
+
 c1 = log_reg.predict([p1])
 c2 = log_reg.predict([p2])
 c3 = log_reg.predict([p3])
 c4 = log_reg.predict([p4])
-print(c1,c2,c3,c4)
-
+print("class p1 : "+str(c1))
+print("class p2 : "+str(c2))
+print("class p3 : "+str(c3))
+print("class p4 : "+str(c4))
 
 
 plt.show()
