@@ -47,7 +47,6 @@ plt.annotate("P2",p2)
 plt.annotate("P3",p3)
 plt.annotate("P4",p4)
 
-#ax.annotate('your_lable', (x,y))
 
 pred1 = log_reg.predict_proba([p1])
 pred2 = log_reg.predict_proba([p2])
