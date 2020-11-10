@@ -76,7 +76,7 @@ for k, col in zip(unique_labels, colors):
         # Black used for noise.
         col = [0, 0, 0, 1]
 
-   
+
     class_member_mask = (labels == k)
 
     # the core points have a different size - the are bigger
