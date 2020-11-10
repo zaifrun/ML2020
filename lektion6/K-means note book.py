@@ -25,15 +25,13 @@ iris = datasets.load_iris()
 # slicing by using a real two-dim dataset
 X = iris.data[:, :2]
 
-
 # Okay, so let us just try to plot this data to see how it looks before we start working on it
 
 # In[3]:
 
-
 plt.figure() # creating a new figure
+plt.title('The raw data points - before clustering')
 plt.scatter(X[:, 0], X[:, 1], color='black', s=20)  # plot x,y values using the color black and size = 20
-
 
 # So we see we have some more or less random 2D data. Now let us to try to group the data (cluster):
 
@@ -70,6 +68,8 @@ cmap_bold = [ListedColormap(['#FF0000', '#00FF00']),
              ListedColormap(['#FF0000', '#00FF00', '#0000FF', '#FFFF00','#00FFFF'])]
 
 # now plot the same points, but this time assigning the colors to indicate the clusters
+plt.figure() # creating a new figure
+plt.title('Clustering with Kmeans - k = 2')
 
 plt.scatter(X[:, 0], X[:, 1], c=labels, edgecolor='black', cmap=cmap_bold[0], s=20)
 
@@ -99,6 +99,8 @@ kmeans = KMeans(n_clusters=k, random_state=0).fit(X)
 # this will contain the labels for our predicted clusters (either 0,1,2, or 3)   
 labels = kmeans.labels_
 #using the color map with index 2 - which has 4 colors if you go back in the coode
+plt.figure() # creating a new figure
+plt.title('Clustering with kmeans - k = 4')
 plt.scatter(X[:, 0], X[:, 1], c=labels, edgecolor='black', cmap=cmap_bold[2], s=20)
 
-plt.plot()
+plt.show()
