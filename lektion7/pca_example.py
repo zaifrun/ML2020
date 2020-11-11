@@ -17,19 +17,25 @@ print(pca)
 
 X, y = iris_df.data, iris_df.target
 X_proj = pca.fit_transform(X)
+print("dimensions of transformed data")
 print(X_proj.shape)
 
 plt.scatter(X_proj[:, 0], X_proj[:, 1], c=y)
-plt.show()
+plt.title('Plot of the data in the transformed (2D) space')
+
 
 # Principal axes in feature space, representing the directions of maximum variance in the data.
 # The components are sorted by explained_variance_.
 
 # pca.components_ has the meaning of each principal component, essentially how it was derived
-# checking shape tells us it has 2 rows, one for each principal component and 4 columns, proportion of each of the 4 features
+# checking shape tells us it has 2 rows, one for each principal component and 4 columns,
+# proportion of each of the 4 features
 # for each row
-print(pca.components_)
+print("dimensions of principal components:")
 print(pca.components_.shape)
+print("actual principal components in feature space - sorted after explained varians")
+print(pca.components_)
+
 
 # this tells us the extent to which each component explains the original dataset.
 # so the 1st component is able to explain ~92% of X and the second only about 5.3%
@@ -44,7 +50,7 @@ plt.figure(figsize=(10, 4))
 # create color map
 colormap = np.array(['red', 'lime', 'black', 'blue', 'yellow', 'green', 'red'])
 
-k = 5
+k = 3
 # running kmeans clustering into two
 kmeans = KMeans(n_clusters=k, random_state=0).fit(X_proj)
 
@@ -56,13 +62,13 @@ clusters = kmeans.cluster_centers_
 # printing our cluster centers - there will be 2 of them.
 print(clusters)
 
-# Plot the Original Classifications
-plt.subplot(1, 2, 1)
+# Plot the Original Classifications - in the reduced 2D space
+plt.subplot(1, 2, 1) # 1 row with 2 plots and place this plot in the index 1 (so to the left)
 plt.scatter(X_proj[:, 0], X_proj[:, 1], c=colormap[y], s=40)
 plt.title('Real Classification')
 
-# Plot the Models Classifications
-plt.subplot(1, 2, 2)
+# Plot the Models Classifications - in the reduced 2D space
+plt.subplot(1, 2, 2) # 1 row with 2 plots and place this plot in the index 2 (so to the right)
 plt.scatter(X_proj[:, 0], X_proj[:, 1], c=colormap[labels], s=40)
 plt.title('K Mean Classification')
 
