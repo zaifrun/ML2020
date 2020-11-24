@@ -13,7 +13,7 @@ from sklearn.decomposition import PCA
 iris_df = datasets.load_iris()
 X, y = iris_df.data, iris_df.target
 
-pca = PCA(n_components=2)
+pca = PCA(n_components=4)
 print("dimensions of original data")
 print(X.shape)
 
