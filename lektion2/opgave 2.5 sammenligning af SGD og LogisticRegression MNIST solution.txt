@@ -1,0 +1,28 @@
+
+Logistic Regression:
+
+Evaluating performance: Confusion matrix
+[[9025   83]
+ [ 144  748]]
+(TN,FP,FN,TP) (9025, 83, 144, 748)
+precision: 0.9001203369434416
+recall: 0.8385650224215246
+F1 score: 0.8682530470110272
+
+
+SGD classifier:
+
+Evaluating performance: Confusion matrix
+[[8707  401]
+ [ 107  785]]
+(TN,FP,FN,TP) (8707, 401, 107, 785)
+precision: 0.6618887015177066
+recall: 0.8800448430493274
+F1 score: 0.75553416746872
+
+
+Så logistic regression er nok bedst!!
+Der er flere false positives i SGD.
+Men recall er lidt bedre i SGD, da får flere TP, men laver så også flere fejl.
+
+

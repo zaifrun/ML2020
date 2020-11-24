@@ -11,12 +11,15 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 iris_df = datasets.load_iris()
-
-pca = PCA(2)
-print(pca)
-
 X, y = iris_df.data, iris_df.target
-X_proj = pca.fit_transform(X)
+
+pca = PCA(n_components=2)
+print("dimensions of original data")
+print(X.shape)
+
+
+pca.fit(X)
+X_proj = pca.transform(X)
 print("dimensions of transformed data")
 print(X_proj.shape)
 
@@ -33,7 +36,7 @@ plt.title('Plot of the data in the transformed (2D) space')
 # for each row
 print("dimensions of principal components:")
 print(pca.components_.shape)
-print("actual principal components in feature space - sorted after explained varians")
+print("actual principal components in feature space (4D) - sorted after explained varians")
 print(pca.components_)
 
 
@@ -51,7 +54,7 @@ plt.figure(figsize=(10, 4))
 colormap = np.array(['red', 'lime', 'black', 'blue', 'yellow', 'green', 'red'])
 
 k = 3
-# running kmeans clustering into two
+# running kmeans clustering
 kmeans = KMeans(n_clusters=k, random_state=0).fit(X_proj)
 
 # the random state is optionlly, here it is specified so we get determistic clusters.
@@ -60,6 +63,7 @@ labels = kmeans.labels_
 # the centers of the calculated clusters
 clusters = kmeans.cluster_centers_
 # printing our cluster centers - there will be 2 of them.
+print("k means cluster centers:")
 print(clusters)
 
 # Plot the Original Classifications - in the reduced 2D space
