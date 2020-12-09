@@ -1,0 +1,7 @@
+[0.92461872 0.05306648 0.01710261 0.00521218]
+
+Så ca. 1,7 % og så 0,5 %
+
+Summen af alle 4 giver tæt på 1.
+
+Ja, det giver god mening af reducere til 2 dimensioner.
